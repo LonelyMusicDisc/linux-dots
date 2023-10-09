@@ -21,17 +21,26 @@
 
 * Native Compile
 Packages get compiled, so they run faster :D
+
 #+BEGIN_SRC emacs-lisp
 (setq native-comp-deferred-compilation t
         native-comp-async-report-warnings-errors nil
         native-comp-warning-on-missing-source nil)
 #+END_SRC
 
+* Org
+
+#+begin_src emacs-lisp
+(setq org-directory "~/Documents/org")
+(setq +org-capture-journal-file "~/Documents/journal.org")
+#+end_src
+
 * Appearance
 ** Font
+
 #+begin_src emacs-lisp
 ;(defvar title-font nil) ; the variable for org-mode headings and titles.
-(setq doom-font (font-spec :family "Cascadia Code" :size 16)
+(setq doom-font (font-spec :family "0xProto" :size 16)
       doom-variable-pitch-font (font-spec :family "Merriweather Sans" :size 16 :weight 'normal))
 #+end_src
 
@@ -89,6 +98,7 @@ convenient and miscellaneous settings that make my org-life easier, such as sett
 #+END_SRC
 
 ** Babel
+
 #+begin_src emacs-lisp
 ;; active Org-babel languages
 (org-babel-do-load-languages
@@ -98,6 +108,7 @@ convenient and miscellaneous settings that make my org-life easier, such as sett
 #+end_src
 
 ** Pretty Markdown
+
 #+begin_src emacs-lisp
 (add-hook 'markdown-mode-hook
           (setq left-margin-width 30 right-margin-width 30))
@@ -106,6 +117,7 @@ convenient and miscellaneous settings that make my org-life easier, such as sett
 #+end_src
 
 ** Templates
+
 #+BEGIN_SRC emacs-lisp
     (require 'org-tempo)
     (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
@@ -122,6 +134,7 @@ convenient and miscellaneous settings that make my org-life easier, such as sett
 #+END_SRC
 
 ** Timer
+
 #+BEGIN_SRC emacs-lisp
 
 (require 'org)
@@ -132,12 +145,14 @@ convenient and miscellaneous settings that make my org-life easier, such as sett
 
 
 ** PlantUML
+
 #+begin_src emacs-lisp
 (setq org-plantuml-jar-path
       (expand-file-name "~/org/scripts/plantuml.jar"))
 #+end_src
 
 ** Pretty Fountain
+
 #+begin_src emacs-lisp
 (add-hook! 'fountain-mode-hook
            (setq left-margin-width 15 right-margin-width 15))
@@ -153,6 +168,7 @@ for some reason ~set-cursor-color~ does not work.
 #+end_src
 
 ** Doom Themes
+
 #+begin_src emacs-lisp
 ;; `gruvbox-material' contrast and palette options
 (setq doom-gruvbox-material-background  "hard"  ; or hard (defaults to soft)
@@ -171,6 +187,7 @@ for some reason ~set-cursor-color~ does not work.
 #+end_src
 
 ** SVG-TAG-MODE
+
 #+begin_src emacs-lisp :tangle no
 (add-hook! 'org-mode-hook 'svg-tag-mode)
 (require 'svg-tag-mode)
@@ -178,7 +195,9 @@ for some reason ~set-cursor-color~ does not work.
       '(("TODO" . ((lambda (tag) (svg-tag-make "TODO" :face 'org-tag
                                                :radius 0 :inverse t :margin 0))))))
 #+end_src
+
 ** .TODO States
+
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-todo-keywords '((sequence "TODO(t)" "PROJ(p)" "WAIT(w)" "LATER(l)" "NOW(n)" "|" "DONE(d)" "CANCELLED(c)")))
@@ -187,6 +206,7 @@ for some reason ~set-cursor-color~ does not work.
 
 * Projectile
 The following elisp makes the home directory ignore by projectile, or at least tries to.
+
 #+caption: code from https://oracleyue.github.io/post/fix-issues-projectile/
 #+begin_src emacs-lisp
 (setq projectile-ignored-projects '("~/"))
@@ -211,9 +231,11 @@ The following elisp makes the home directory ignore by projectile, or at least t
 ;            (concat "rg -0 --files --color=never --hidden" rg-cmd " " rg-ignorefile))))
 
 #+end_src
+
 * Coding
 ** Lua
 Lua-specific settings.
+
 #+begin_src emacs-lisp
 (add-hook! lua-mode-hook
   (menu-bar--display-line-numbers-mode-absolute)
@@ -224,10 +246,13 @@ Lua-specific settings.
 #+end_src
 
 ** LSP Servers
+
 #+begin_src emacs-lisp :tangle no
 (use-package! lsp-volar)
 #+end_src
+
 ** Volar
+
 #+begin_src emacs-lisp :tangle no
 (defadvice! +lsp--create-filter-function (workspace)
   :override #'lsp--create-filter-function
@@ -300,10 +325,13 @@ Lua-specific settings.
 
 ** Format All :HANDLE:
 Okay, not really a language, but it gives this weird popup that takes up half of the screen.
+
 #+begin_src emacs-lisp
 (setq format-all-show-errors 'never)
 #+end_src
+
 ** Typescript
+
 #+begin_comment emacs-lisp
 (add-hook 'typescript-mode-hook
           (lambda ()
@@ -312,15 +340,19 @@ Okay, not really a language, but it gives this weird popup that takes up half of
 #+end_comment
 
 ** Godot
+
 #+begin_src emacs-lisp
 (setq gdscript-godot-executable "~/AppImages/Godot_v3.5.2-stable_mono_x11.64")
 #+end_src
 
 ** HTML
+
 #+begin_src emacs-lisp
 (set-formatter! 'js-reautify  "js-beautify --type html" :modes '(web-mode))
 #+end_src
+
 ** Rust
+
 #+begin_src emacs-lisp :tangle no
 ; (after! lsp-ui
 ;   (setq lsp-ui-doc-use-childframe t
@@ -330,6 +362,7 @@ Okay, not really a language, but it gives this weird popup that takes up half of
 #+end_src
 
 ** Codeium AI
+
 #+begin_src emacs-lisp :tangle no
 (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
 #+end_src
@@ -347,6 +380,7 @@ Company code.
 
 * Social
 ** IRC
+
 #+begin_src emacs-lisp
 (after! circe
   (set-irc-server! "irc.libera.chat"
@@ -360,6 +394,7 @@ Company code.
 #+end_src
 * Functional
 ** Change Tab Spacing :FUNCTION:MACRO:
+
 #+begin_src emacs-lisp
 (defmacro set-tab-indention (number)
   "Sets the amount of spaces the tab key produces."
@@ -399,6 +434,7 @@ There are times where I want the window (usually an org-mode buffer) to have no 
 #+end_src
 
 The hooks:
+
 #+begin_src emacs-lisp
 (add-hook 'window-configuration-change-hook #'+setup-text-mode-margins)
 (add-hook 'display-line-numbers-mode-hook #'+setup-text-mode-margins)
@@ -406,6 +442,7 @@ The hooks:
 #+end_src
 
 Advice!
+
 #+begin_src emacs-lisp
 (defadvice! +doom/toggle-line-numbers--call-hook-a ()
   :after #'doom/toggle-line-numbers
@@ -413,12 +450,14 @@ Advice!
 #+end_src
 
 Remove the line-numbers hook from text mode.
+
 #+begin_src emacs-lisp
 (remove-hook 'text-mode-hook #'display-line-numbers-mode)
 #+end_src
 
 ** TODO Toggle Window :FUNCTION:
 A notes-like window that you can view and hide at any moment sounds really cool, I wanna try it out.
+
 #+begin_src emacs-lisp
 (require 'popwin)
 (popwin-mode 1)
@@ -452,6 +491,7 @@ A notes-like window that you can view and hide at any moment sounds really cool,
 
 ** Sprinter Mode (sprinter-mode) :MODE:
 Minor mode that helps prevent loss of focus when writing, to maximize speed.
+
 #+begin_src emacs-lisp
 (define-minor-mode sprinter-mode
   "Toggles sprinter minor mode. Helps writing sprints not get interuppted by editing."
@@ -471,4 +511,9 @@ Minor mode that helps prevent loss of focus when writing, to maximize speed.
            (flyspell-mode 1)
            (company-mode nil)
            (set-fringe-style nil))
+#+end_src
+
+* Server
+#+begin_src emacs-lisp
+(server-start)
 #+end_src
