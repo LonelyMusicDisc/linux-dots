@@ -35,12 +35,23 @@ Packages get compiled, so they run faster :D
 (setq +org-capture-journal-file "~/Documents/journal.org")
 #+end_src
 
+* Text
+:PROPERTIES:
+:HEADER-ARGS: :tangle no
+:END:
+#+begin_src elisp
+(after! ispell
+  (let ((_dict (concat (getenv "HOME") "/.local/share/aspell/aspell_dict")))
+    (when (file-readable-p _dict)
+      (setq ispell-alternate-dictionary _dict))))
+#+end_src
+
 * Appearance
 ** Font
 
 #+begin_src emacs-lisp
 ;(defvar title-font nil) ; the variable for org-mode headings and titles.
-(setq doom-font (font-spec :family "0xProto" :size 16)
+(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font" :size 16)
       doom-variable-pitch-font (font-spec :family "Merriweather Sans" :size 16 :weight 'normal))
 #+end_src
 
@@ -55,18 +66,19 @@ making org-mode fit more into my visual tastes
 (add-hook 'org-mode-hook 'mixed-pitch-mode)
 (add-hook 'org-mode-hook 'menu-bar--display-line-numbers-mode-none)
 
-  (custom-theme-set-faces
-   'user
-   '(org-src ((t (:inherit doom-font))))
-   '(org-table ((t (:inherit doom-font))))
-   '(org-formula ((t (:inherit doom-font))))
-   '(org-todo ((t (:inherit doom-font))))
+(custom-theme-set-faces
+ 'user
+ '(org-src ((t (:inherit doom-font))))
+ '(org-table ((t (:inherit doom-font))))
+ '(org-formula ((t (:inherit doom-font))))
+ '(org-todo ((t (:inherit doom-font))))
+ '(org-list-dt ((t (:inherit doom-font))))
 
-   '(org-document-title ((t (:family "Merriweather" :height 1.8))))
-   '(org-level-1 ((t (:inherit outline-1 :family "Merriweather" :height 1.6))))
-   '(org-level-2 ((t (:inherit outline-2 :family "Merriweather" :height 1.3))))
-   '(org-level-3 ((t (:inherit outline-3 :family "Merriweather" :height 1.1))))
-   '(org-level-4 ((t (:inherit outline-3 :family "Merriweather")))))
+ '(org-document-title ((t (:family "Merriweather" :height 1.8))))
+ '(org-level-1 ((t (:inherit outline-1 :family "Merriweather" :height 1.6))))
+ '(org-level-2 ((t (:inherit outline-2 :family "Merriweather" :height 1.3))))
+ '(org-level-3 ((t (:inherit outline-3 :family "Merriweather" :height 1.1))))
+ '(org-level-4 ((t (:inherit outline-3 :family "Merriweather")))))
 
 #+END_SRC
 Switch org-ellipsis with the ~0026~ ellipsis unicode.
@@ -136,11 +148,8 @@ convenient and miscellaneous settings that make my org-life easier, such as sett
 ** Timer
 
 #+BEGIN_SRC emacs-lisp
-
-(require 'org)
-(setq org-clock-sound "~/.doom.d/sounds/ring.wav")
-
-; (add-hook 'kill-emacs-hook (lambda () (shell-command "setxkbmap -option")))
+; (require 'org)
+(setq org-clock-sound "~/.config/.doom.d/sounds/ring.wav")
 #+END_SRC
 
 
@@ -203,6 +212,7 @@ for some reason ~set-cursor-color~ does not work.
   (setq org-todo-keywords '((sequence "TODO(t)" "PROJ(p)" "WAIT(w)" "LATER(l)" "NOW(n)" "|" "DONE(d)" "CANCELLED(c)")))
                 )
 #+END_SRC
+
 
 * Projectile
 The following elisp makes the home directory ignore by projectile, or at least tries to.
@@ -455,10 +465,24 @@ Remove the line-numbers hook from text mode.
 (remove-hook 'text-mode-hook #'display-line-numbers-mode)
 #+end_src
 
-** TODO Toggle Window :FUNCTION:
+** Key Bindings
+#+begin_src emacs-lisp
+(map! :nv "SPC w m r" #'set-window-margin-width)
+(map! :nv "U" #'evil-redo)
+
+(map!
+ :nv "SPC w ]" #'evil-window-right
+ :nv "SPC w [" #'evil-window-left)
+
+(map! :leader :prefix-map ("t" . "toggle")
+      :desc "Auto completion"     "a" #'company-mode)
+
+#+end_src
+
+** CANCELLED Toggle Window :FUNCTION:
 A notes-like window that you can view and hide at any moment sounds really cool, I wanna try it out.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (require 'popwin)
 (popwin-mode 1)
 
@@ -485,10 +509,6 @@ A notes-like window that you can view and hide at any moment sounds really cool,
 (map! :leader :desc "Toggle Special Buffer" "\\" (lambda () (interactive) (tmp/special-buffer-toggle)))
 #+end_src
 
-#+begin_src emacs-lisp :tangle no
-(org-buffer-list)
-#+end_src
-
 ** Sprinter Mode (sprinter-mode) :MODE:
 Minor mode that helps prevent loss of focus when writing, to maximize speed.
 
@@ -502,15 +522,15 @@ Minor mode that helps prevent loss of focus when writing, to maximize speed.
 
 (add-hook! 'sprinter-mode-on-hook
            (message "sprinter-mode enabled!")
-           (flyspell-mode 0)
-           (company-mode 0)
-           (set-fringe-style 0))
+           (company-mode 0))
 
 (add-hook! 'sprinter-mode-off-hook
            (message "sprinter mode disabled!")
            (flyspell-mode 1)
-           (company-mode nil)
-           (set-fringe-style nil))
+           (company-mode nil))
+
+(setq git-gutter:disabled-modes
+       (cons 'org-mode git-gutter:disabled-modes))
 #+end_src
 
 * Server
