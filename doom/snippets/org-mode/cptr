@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Chapter Planning/Outline
+# uuid:
+# key: cptr
+# condition: t
+# --
+** Chapter ${1:N}
+${2:DESCRIPTION}
+
+*** Serving
+${3:How does it serve she story?}

@@ -1,0 +1,61 @@
+# -*- mode: snippet -*-
+# name: __character
+# key: __character
+# --
+
+* Basic Information
+
+- Concept :: ${1:CONCEPT}
+- Full Name :: ${2:NAME}
+  - Nicknames ::
+- Age and Gender :: ${3:AGE/GENDER}
+- Birthdate, Birthplace and Home ::
+- Race, Ethnicity and Culture ::
+- Family ::
+- Friends/Allies ::
+- Enemies/Foes ::
+- Occupation/Schooling ::
+
+* Personality and Character
+** Questions
+*** How do they serve the story?
+
+*** Methodical or Creative?
+
+*** Where do they lie on the introversion scale?
+
+*** Do they listen to their heart or head?
+
+*** What are their hobbies?
+
+*** What would they die for?
+
+*** What is their character arc or arcs?
+
+** Core Traits
+
+** Strengths
+
+** Weaknesses
+
+*** Fears
+
+*** Pain Points
+
+*** Insecurities
+
+** Goals/Dreams/Aspirations
+
+** Beliefs/Viewpoints/ideas
+
+** Values
+
+** Mannerisms
+
+* Backstory
+
+* Appearance
+
+* Skills & Abilities
+
+* Trivia

@@ -1,0 +1,17 @@
+configuration {
+   modi: "window,drun,run";
+   font: "Cascadia Code Mono 14";
+}
+@import "/home/dice/.local/share/rofi/themes/arch-yellow.rasi"
+
+window {
+location:   south west;
+anchor:   south west;
+height:    50%;
+width:   45%;
+orientation:   horizontal;
+children:   [mainbox];
+x-offset:   0px;        
+y-offset:   -28px;
+}
+@theme "/home/dice/.local/share/rofi/themes/arch-yellow.rasi"

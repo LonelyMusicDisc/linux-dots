@@ -51,7 +51,7 @@ Packages get compiled, so they run faster :D
 
 #+begin_src emacs-lisp
 ;(defvar title-font nil) ; the variable for org-mode headings and titles.
-(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font" :size 16)
+(setq doom-font (font-spec :family "CaskaydiaMono NFM" :size 16)
       doom-variable-pitch-font (font-spec :family "Merriweather Sans" :size 16 :weight 'normal))
 #+end_src
 
@@ -207,7 +207,7 @@ for some reason ~set-cursor-color~ does not work.
 
 ** .TODO States
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
 (after! org
   (setq org-todo-keywords '((sequence "TODO(t)" "PROJ(p)" "WAIT(w)" "LATER(l)" "NOW(n)" "|" "DONE(d)" "CANCELLED(c)")))
                 )

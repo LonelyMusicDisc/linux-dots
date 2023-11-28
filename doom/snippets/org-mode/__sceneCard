@@ -1,0 +1,25 @@
+# -*- mode: snippet -*-
+# name: __sceneCard
+# uuid: __sceneCard
+# key: trigger-key
+# condition: t
+# --
+
+~POV CHARACTER~:
+~GOAL OF SCENE~:
+**** SETUP
+What are the characters dealing with, both internally and externally, when the scene begins?
+#+begin_quote
+
+#+end_quote
+**** CROSSROADS
+The crux of the scene is revealed... scene could go two ways from here. Characters make decisions based on their internal conflict.
+#+begin_quote
+
+#+end_quote
+**** OUTCOME
+Where does this leave the characters? What has changed?
+#+begin_quote
+
+#+end_quote
+**** THE NEW QUESTION

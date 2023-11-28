@@ -54,6 +54,7 @@
                                         ; (unpin! org-mode) ; To add new features.
 (package! org :pin "ca873f7")
 (package! org-chef)
+(package! ftable :pin "d7c243a")
 
 (package! fountain-mode)
 

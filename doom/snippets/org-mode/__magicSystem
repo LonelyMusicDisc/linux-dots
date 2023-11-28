@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: Magic System Questionnaire
+# key: __magic-system-template
+# --
+* `(org-get-title)`
+
+** Abstract
+*** Procedure
+*** Who can practice it
+*** What can it do
+**** Supernatural Feats and Phenomena
+*** Limitations
+**** What it can't do
+*** What it looks like
+*** What it feels like
+*** Scarcity
+#+BEGIN_COMMENT
+    /Does it play a role in everyday life, or is it more of a rarity?/
+#+END_COMMENT

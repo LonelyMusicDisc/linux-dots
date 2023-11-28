@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: __premise
+# key: trigger-key
+# condition: t
+# --
+
+- What's the Setting? ::
+- Who's the Lead? ::
+- Who's the Antagonist? ::
+- What's the idea of the Endng? ::
+- What's the idea of the Start Point? ::
+- Synopsis ::
+- Cast ::
